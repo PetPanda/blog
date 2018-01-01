@@ -1,2 +1,1 @@
-# blog
-wangsm的博客
+# Blog
