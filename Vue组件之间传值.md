@@ -1,15 +1,6 @@
----
-title: Vue组件之间传值
-date: 2017-06-25 09:04:00
-tags: 框架 Vue
-category: 前端开发
-comments: true
-thumbnail: http://oksgjpnw8.bkt.clouddn.com/vue.png?imageslim
----
 
 
 # Vue组件之间的传值（父-子/子-父/非父子之间）
-<br/>
 
 <img src="http://oksgjpnw8.bkt.clouddn.com/vue.png?imageslim">
 

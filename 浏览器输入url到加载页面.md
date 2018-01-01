@@ -1,22 +1,8 @@
----
-title: 浏览器输入url到加载页面发生了什么
-date: 2017-04-13 18:09:08
-tags: javascript
-category: 前端开发 URL HTTP
-comments: true
-thumbnail: http://oksgjpnw8.bkt.clouddn.com/003.jpg?imageslim
----
-
-从输入URL到页面加载中间经历了什么？
-
-<!--more-->
-
 
 # 从输入URL到加载完成页面的过程
 
-最近经历了几次面试，其中有好几次被问到一个问题，就是“从输入URL到页面加载完成中间经历了什么？”。在此之前，并没有对这个问题有过研究，所以回来就在网上查了一下，做了一些总结。
 
-一般来说，要经历一下过程：
+从输入URL到加载完成页面的过程
 
 * DNS解析
 * 建立TCP链接

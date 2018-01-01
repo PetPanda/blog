@@ -1,16 +1,3 @@
----
-title: javascript继承（一）-构造函数的继承
-date: 2017-04-09 16:27:00
-tags: javascript
-comments: true
-category: 前端开发
-thumbnail: http://oksgjpnw8.bkt.clouddn.com/005.jpg?imageslim
----
-
-构造函数的继承方式
-
-<!--more-->
-
 # JavaScript构造函数的继承
 
 在javascript中，构造函数的继承存在几种方式，下面总结了有5中函数继承的方法。
