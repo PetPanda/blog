@@ -56,8 +56,8 @@ es5没有block的概念，所以不能百分之百实现const，只能挂在到�
 var _const = function _const (data, value) {
   window.data = value
   Object.defineProperty(window, data, {
-    enumerable: false,
-    configurable: false,
+    enumerable: false, // 属性是否可遍历
+    configurable: false, // 配置是否可以删除，delete a
     get: function () {
       return value
     },
