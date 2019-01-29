@@ -11,7 +11,7 @@
 // 这是将要被劫持的对象
 const data = {
   name: '',
-};hei-24px
+};
 
 function say(name) {
   if (name === '古天乐') {
