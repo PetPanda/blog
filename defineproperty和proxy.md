@@ -7,7 +7,7 @@
 
 我们通常使用`Object.defineProperty`劫持对象访问器，在属性值发生变化时我们可以获取变化。
 
-````javascript
+```javascript
 // 这是将要被劫持的对象
 const data = {
   name: '',
@@ -43,7 +43,7 @@ data.name = '渣渣辉';
 //大家好,我系渣渣辉
 //戏我演过很多,可游戏我只玩贪玩懒月
 
-````
+```
 
 数据劫持的优势
 1. 无需显式调用，直接触发
@@ -61,7 +61,7 @@ data.name = '渣渣辉';
 
 极简版双向数据绑定：
 
-````javascript
+```javascript
 const obj = {}
 Object.defineProperty(obj, 'text', {
   get: function () {
@@ -78,7 +78,7 @@ Object.defineProperty(obj, 'text', {
  input.addEventListener('keyup', function(e) {
    obj.text = e.target.value
  })
-````
+```
 
 极简版的缺陷： 
 1. 只监听了一个属性，一个对象不可能只有一个属性
@@ -89,7 +89,7 @@ Object.defineProperty(obj, 'text', {
 Vue的操作就是加入发布订阅模式，结合`Object.defineProperty`的劫持能力，实现了可用性很高的双向数据绑定
 
 首先实现一个订阅发布中心 
-````javascript
+```javascript
 let uid = 0;
 // 用于存储订阅者发布消息
 class Dep {
@@ -114,11 +114,11 @@ class Dep {
 }
 // 为Dep类设置一个静态属性，默认为null 工作时指向当前的watcher
 Dep.target = null;
-````
+```
 
 实现监听者，用于监听属性值的变化
 
-````javascript
+```javascript
 // 监听者，监听对象属性的变化
 class Observr {
   constructor (value) {
@@ -169,11 +169,11 @@ function observer(value) {
   }
   return new Observer(value)
 }
-````
+```
 
 实现订阅者
 
-````javascript
+```javascript
 class Watcher {
   constructor(vm, expOrFn, cb) {
     this.depIds  = {}; // hash存储订阅者的Id，避免重复订阅者
@@ -211,6 +211,6 @@ class Watcher {
      return val;
    }
 }
-````
+```
 
 

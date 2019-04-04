@@ -6,6 +6,8 @@
 
 ## 初步实现
 
+因为new关键字的结果是一个对象，
+
 ````javascript
 function objectFactory() {
   var obj = new Object()

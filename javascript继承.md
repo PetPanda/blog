@@ -4,7 +4,7 @@
 
 例如： 我们有两个函数`Animal` `Cat`，要让`Cat`继承`Animal`的方法：
 
-````javascript
+```javascript
 function Animal(){
     this.species = '动物'
 }
@@ -12,13 +12,13 @@ function Cat(name,color){
     this.name = name;
     this.color = color;
 }
-````
+```
 
 ## 构造函数的绑定
 
 比较简单的继承方式就是使用`call`·`apply`方法实现继承，将父对象的构造函数绑定在子对象上；
 
-````javascript
+```javascript
 function Cat(name,color){
     Animal.apply(this,arguments);
     this.name = name;
@@ -27,19 +27,19 @@ function Cat(name,color){
 
 var cat = new Cat('小花','red');
 console.log(cat.species) //动物
-````
+```
 
 ## prototype实现继承
 
 每个JavaScript函数都存在一个prototyp对象，如果一个函数的`prototype`属性指向另一个对象的实例，那么这个对象就继承了另一个对象的属性和方法。
 
-````javascript
+```javascript
 Cat.prototype =  new Animal();
 
 Cat.prototype.constructor = Cat;
 
 var cat = new Cat('jone','red')
-````
+```
 
 第一行代码，Cat的`prototype`指向了`Animal`的实例对象，它相当于完全删除了prototype对象的原来的值，然后赋予一个想你的值。
 
@@ -56,18 +56,18 @@ var cat = new Cat('jone','red')
 
 首先，改变Animal方法
 
-````javascript
+```javascript
 function Animal(){};
 Animal.prototype.species = 'animals';
-````
+```
 
 然后将Cat的prototype对象指向Animal的prototype属性
 
-````javascript
+```javascript
 Cat.prototype = Animal.prototype;
 Cat.prototype.constructor =  Cat;
 var cat = new Cat('johe','red');
-````
+```
 
 与上一种方法相比，这样做效率比较高，比较省内存；缺点是：Cat.prototype直接指向Animal.prototype对象，那么你**对Cat.prototype的修改，都会修改到Animal.prototype**
 
@@ -75,20 +75,20 @@ var cat = new Cat('johe','red');
 
 直接继承prototype会存在以上缺点，所以可以使用一个空对象作为中介
 
-````javascript
+```javascript
 function F(){};
 F.prototype = Animal.prototype;
 
 Cat.prototype = new F();
 
 Cat.prototype.construtor = Cat;
-````
+```
 
 F是空对象，所以几乎不会占用内存，这时修改`Cat.prototype`就不会影响到Animal了
 
 可以将以上方式封装成一个函数
 
-````javascript
+```javascript
 function extends1(Child,Parent){
     var F = function(){};
     F.prototype = Parent.prototype;
@@ -96,14 +96,14 @@ function extends1(Child,Parent){
     Child.prototype.constructor = Child;
     Child.uber = Parent.prototype;
 }
-````
+```
 
 使用时：
 
-````javascript
+```javascript
 extends1(Cat,Animal);
 var cat = new Cat('jone','red');
-````
+```
 
 其中`Child.uber = Parent.prototype`,意思是为子对象设置一个uber属性，这个属性指向父对象的prototype属性，这等于在子对象上面打开了一个通道，可以直接调用父对象的方法。
 
@@ -113,14 +113,14 @@ var cat = new Cat('jone','red');
 
 首先，将Animal的所有不变属性，放在他的prototype对象上
 
-````javascript
+```javascript
 function Animal(){};
 Animal.prototype.species = 'animals';
-````
+```
 
 使用
 
-````javascript
+```javascript
 function extends2(Child,Parent){
     var p = Parent.prototype;
     var c = Child.prototype;
@@ -130,4 +130,4 @@ function extends2(Child,Parent){
 
     c.uber = p;
 }
-````
+```
