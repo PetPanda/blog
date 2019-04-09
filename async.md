@@ -4,7 +4,7 @@
 
 带有`async`关键字的函数，它使得你的函数的返回值必定是Promise对象
 
-````javascript
+```javascript
 async funciton fn1() {
   return 123
 }
@@ -13,7 +13,7 @@ function fn2 () {
 }
 console.log(fn1) // Promise {<resolved>: 123}
 console.log(fn2) // 123
-````
+```
 
 `await` 等的是右侧的表达式结果 ，如果右侧是函数，那么函数return的值就是表达式结果； 如果右侧是一个Hello或者什么值，那表达式结果就是Hello
 

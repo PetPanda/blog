@@ -8,7 +8,7 @@ call: call()方法在使用一个指定的this值和若干个指定的参数值�
 1. 改变this指向
 2. 函数执行
 
-````javascript
+```javascript
 Function.prototype.call2 = functon(context) {
   var context = context || window
   context.fn = this
@@ -24,11 +24,11 @@ Function.prototype.call2 = functon(context) {
   delete context.fn
   return result
 }
-````
+```
 
 ## apply 实现
 
-````javascript
+```javascript
 Function.prototype.apply2 = function(context, arr) {
   var context = Object(context) || window
   context.fn = this
@@ -46,4 +46,4 @@ Function.prototype.apply2 = function(context, arr) {
   delete context.fn
   return result
 }
-````
+```

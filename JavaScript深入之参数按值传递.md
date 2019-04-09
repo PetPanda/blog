@@ -2,7 +2,7 @@
 
 ## 按值传递
 
-````javascript
+```javascript
 var value = 1
 function foo(v) {
   v = 2
@@ -10,14 +10,14 @@ function foo(v) {
 }
 foo(value)
 console.log(value) // 1
-````
+```
 解释： 当传递value到函数foo中，相当于拷贝了一份value,假设拷贝的值是_value ,并不会修改原来的值
 
 ## 引用传递
 
 引用传递： 就是传递对象的引用，函数内部参数的任何改变都会影响该对象的值，因为两者引用的是同一对象
 
-````javascript
+```javascript
 var obj = {
   value: 1
 }
@@ -27,12 +27,12 @@ function foo(o) {
 }
 foo(obj)
 console.log(obj.value) // 2
-````
+```
 疑问： 所有函数的参数都是按值传递的，这怎么能按“引用传递”成功呢？
 
 ## 按共享传递
 
-````javascript
+```javascript
 var obj = {
   value: 1
 }
@@ -42,7 +42,7 @@ function foo(o) {
 }
 foo(obj)
 console.log(obj.value) // 1
-````
+```
 
 共享传递： 在传递对象的时候，传递对象的引用副本
 
@@ -56,12 +56,12 @@ console.log(obj.value) // 1
 
 案例一与案例三相似
 
-````javascript
+```javascript
 var a = { b: 1} // a = {b:1} 
 var c = a // c = {b:1}
 a = 2 // 重新赋值a
 console.log(c) // { b: 1}
-````
+```
 然后一步步执行代码
 1. 创建变量a指向`对象{b: 1}`
 2. 创建变量c指向 `对象{b: 1}`
@@ -71,7 +71,7 @@ console.log(c) // { b: 1}
 
 案例二分析
 
-````javascript
+```javascript
 var obj = {
   value: 1
 }
@@ -85,4 +85,4 @@ function foo(o) {
 foo(obj)
 // 对象obj指向的对象的值也改变了
 console.log(obj.value) // 2
-````
+```

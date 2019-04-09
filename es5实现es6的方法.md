@@ -2,7 +2,7 @@
 
 ## 实现let 块级作用域
 
-````javascript
+```javascript
 function outputNum (count) {
   (function () {
     for(var i = 0; i < count ; i++) {
@@ -12,39 +12,7 @@ function outputNum (count) {
   console.log(i)
 }
 outputNum(5)
-````
-## 实现const 
-
-````javascript
-function 
-````
-
-## defineProperty
-
-````javascript
-// 获取对象属性的值与描述
-Object.getOwnPropertyDescriptor(obj, 'name')
-var obj = {}
-// Object.defineProperty() 的属性 
-// writable： 可编辑
-Object.defineProperty(obj, 'name', {
-  value: "wangshouming",
-  writable: false
-})
-obj.name = 'Johe' // cant  writeable 
-// enumerable: 可遍历
-Object.defineProperty(obj, 'name', {
-  value: "wangshouming",
-  enumerable: false
-})
-console.log(Object.keys(obj)) // []
-// configurable：false  能不能删除， 在严格模式下会报错
-Object.defineProperty(obj, 'name', {
-  value: "wangshouming",
-  configurable：false
-})
-delete obj.name // 
-````
+```
 
 ## const 实现
 
@@ -52,7 +20,7 @@ delete obj.name //
 
 es5没有block的概念，所以不能百分之百实现const，只能挂在到某个对象下，要么是全局的window 要么是自定义一个object
 
-````javascript
+```javascript
 var _const = function _const (data, value) {
   window.data = value
   Object.defineProperty(window, data, {
@@ -80,4 +48,31 @@ for (let item in window) { // enumerable 属性值是false 不可枚举
   }
 }
 a = 20 // 报错
-````
+```
+
+## defineProperty
+
+```javascript
+// 获取对象属性的值与描述
+Object.getOwnPropertyDescriptor(obj, 'name')
+var obj = {}
+// Object.defineProperty() 的属性 
+// writable： 可编辑
+Object.defineProperty(obj, 'name', {
+  value: "wangshouming",
+  writable: false
+})
+obj.name = 'Johe' // cant  writeable 
+// enumerable: 可遍历
+Object.defineProperty(obj, 'name', {
+  value: "wangshouming",
+  enumerable: false
+})
+console.log(Object.keys(obj)) // []
+// configurable：false  能不能删除， 在严格模式下会报错
+Object.defineProperty(obj, 'name', {
+  value: "wangshouming",
+  configurable：false
+})
+delete obj.name // 
+```

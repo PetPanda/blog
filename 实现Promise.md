@@ -10,7 +10,7 @@ promise.all
 
 1. 实现resolve reject 以及then方法
 
-````javascript
+```javascript
 function Promise(executor) {
   let _this = this
   _this.status = 'pending'
@@ -44,12 +44,12 @@ Promise.prototye.then = function (onFulfilled, onRejected) {
 }
 
 module.exports = Promise
-````
+```
 
 以上代码实现了`then` 和 `reject`，但是没有实现异步。原因是我们在then函数中支队成功状态和失败状态进行了判断，而实例被New时，执行器中的代码会立即执行。
 
 2. 实现异步
-````javascript
+```javascript
 // 在实例上挂上两个参数
 _this.onResolvedCallbacks = []
 _this.onRejectedCallbacks = []
@@ -85,20 +85,20 @@ function reject (reason) {
     })
   }
 }
-````
+```
 
 上面的代码，虽然能用，但是在处理错误时并没有在promise中抛出错误，应该走reject
 
 3. 处理错误
 
 实现思路，在执行器中执行try catch
-````javascript
+```javascript
 try {
   executor(resolve, reject)
 } catch(e) {
   reject(e)
 }
-````
+```
 
 4. 实现then的链式调用
 
@@ -107,7 +107,7 @@ try {
 在then方法中定义一个promise2，然后再三种状态下分别用Promise2包装一下，在调用onFulfilled时用一个变量x接收返回值，trycatch 一下代码
 
 改动then
-````javascript
+```javascript
 let promise2;
 if (_this.status === 'resolved') {
   promise2 = new Promise((resolve, reject) => {
@@ -152,24 +152,24 @@ if (_this.status === 'pending') {
   })
 }
 return promise2
-````
+```
 x 的作用：用来接收上一次then的返回值
 问题：
   1. 前一次then 返回一个普通的值，字符串数组对象这些东西，都没问题，只需传给下一个then ，刚才的方法够用
   2. 前一次then返回的是一个promise是正常的操作，也是Promise提供的语法糖，我们只判断返回的啥
   3. 前一次then返回的是一个Promise，其中有异步操作，也是理所当然的，那我们就要等待他的状态改变，再进行下面的处理
   4. 前一次then返回的是自己本身这个Promise 
-  ````javascript
+  ```javascript
   var p1 = p.then(funciton () {
     return p1
   })
-  ````
+  ```
   5. 前一次then返回的是一个别人自己随便写的Promise，这个Promise可能是个有then的普通对象，比如{then:'哈哈哈'}，也有可能在then里故意抛错（这种蛋疼的操作我们也要考虑进去）。比如他这样写
   6. 调resolve的时候再传一个Promise下去，我们还得处理这个Promise。
   7. 可能既调resolve又调reject，得忽略后一个
   8. 光then，里面啥也不写。
 
-````javascript
+```javascript
 Promise.prototype.then = function (onFulfilled, onRejected) {
   // 成功或失败，默认不传给一个函数，解决了问题8
   onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : function (value) {
@@ -270,4 +270,4 @@ function resolvePromise(promise2, x, resolve, reject) {
     resolve(x)
   }
 }
-````
+```
